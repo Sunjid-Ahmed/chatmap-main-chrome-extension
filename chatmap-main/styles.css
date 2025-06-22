@@ -1,0 +1,367 @@
+/**
+ * ChatGPT Minimap Navigator - Styles
+ * Provides styling for the minimap interface
+ */
+
+/* Main minimap container */
+#chatgpt-minimap-container {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  width: 120px;
+  height: calc(100vh - 50px);
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  #chatgpt-minimap-container {
+    background: rgba(31, 41, 55, 0.95);
+    border-color: #4b5563;
+    color: #f3f4f6;
+  }
+}
+
+/* Navigation controls */
+#chatgpt-minimap-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  #chatgpt-minimap-controls {
+    border-bottom-color: #4b5563;
+  }
+}
+
+/* Navigation buttons */
+#chatgpt-minimap-controls button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+}
+
+#chatgpt-minimap-controls button:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+#chatgpt-minimap-controls button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+#chatgpt-minimap-controls button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Specific button styling */
+#prev-user-msg {
+  background: #8b5cf6 !important;
+}
+
+#prev-user-msg:hover {
+  background: #7c3aed !important;
+}
+
+#next-user-msg {
+  background: #10b981 !important;
+}
+
+#next-user-msg:hover {
+  background: #059669 !important;
+}
+
+/* Minimap content area */
+#chatgpt-minimap {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px;
+  background: rgba(249, 250, 251, 0.8);
+  border-radius: 0 0 8px 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  #chatgpt-minimap {
+    background: rgba(17, 24, 39, 0.8);
+  }
+}
+
+/* Custom scrollbar for minimap */
+#chatgpt-minimap::-webkit-scrollbar {
+  width: 4px;
+}
+
+#chatgpt-minimap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#chatgpt-minimap::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+#chatgpt-minimap::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+@media (prefers-color-scheme: dark) {
+  #chatgpt-minimap::-webkit-scrollbar-thumb {
+    background: #4b5563;
+  }
+  
+  #chatgpt-minimap::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+  }
+}
+
+/* Minimap message blocks */
+.minimap-block {
+  width: 100%;
+  height: 24px;
+  margin-bottom: 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  background: #e5e7eb;
+  border: 1px solid transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  .minimap-block {
+    background: #4b5563;
+  }
+}
+
+/* AI message blocks */
+.minimap-block.ai-message {
+  background: #dbeafe;
+  border-left: 3px solid #3b82f6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .minimap-block.ai-message {
+    background: #1e3a8a;
+    border-left-color: #60a5fa;
+  }
+}
+
+/* User message blocks - highlighted */
+.minimap-block.user-message {
+  background: #dcfce7;
+  border-left: 4px solid #10b981;
+  border-right: 2px solid #10b981;
+  font-weight: bold;
+  position: relative;
+}
+
+@media (prefers-color-scheme: dark) {
+  .minimap-block.user-message {
+    background: #064e3b;
+    border-left-color: #34d399;
+    border-right-color: #34d399;
+  }
+}
+
+/* User message indicator */
+.minimap-block.user-message::before {
+  content: '';
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(16, 185, 129, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  .minimap-block.user-message::before {
+    background: #34d399;
+    box-shadow: 0 0 4px rgba(52, 211, 153, 0.5);
+  }
+}
+
+/* Current message highlight */
+.minimap-block.current-message {
+  background: #fef3c7 !important;
+  border: 2px solid #f59e0b !important;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+  transform: scale(1.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .minimap-block.current-message {
+    background: #451a03 !important;
+    border-color: #f59e0b !important;
+  }
+}
+
+/* Hover effects */
+.minimap-block:hover {
+  transform: translateX(2px) scale(1.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.minimap-block.user-message:hover {
+  background: #bbf7d0;
+  border-left-color: #059669;
+  border-right-color: #059669;
+}
+
+@media (prefers-color-scheme: dark) {
+  .minimap-block.user-message:hover {
+    background: #022c22;
+    border-left-color: #10b981;
+    border-right-color: #10b981;
+  }
+}
+
+/* Message preview tooltip */
+#minimap-tooltip {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  max-width: 200px;
+  word-wrap: break-word;
+  z-index: 10001;
+  display: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Arrow for tooltip */
+#minimap-tooltip::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-left-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  #chatgpt-minimap-container {
+    width: 100px;
+    font-size: 11px;
+  }
+  
+  .minimap-block {
+    height: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  #chatgpt-minimap-container {
+    display: none;
+  }
+}
+
+/* Smooth animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+#chatgpt-minimap-container {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Focus styles for accessibility */
+#chatgpt-minimap-controls button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.minimap-block:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+}
+
+/* Loading state */
+.minimap-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.minimap-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  #chatgpt-minimap-container {
+    border-width: 3px;
+    border-color: #000;
+  }
+  
+  .minimap-block.user-message {
+    border-width: 3px;
+    background: #000;
+    color: #fff;
+  }
+  
+  .minimap-block.ai-message {
+    border-width: 2px;
+    background: #fff;
+    border-color: #000;
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "ChatMap",
+  "version": "1.0.0",
+  "description": "Adds a dynamic minimap to ChatGPT conversations for quick navigation through user messages",
+  
+  "permissions": [
+    "activeTab"
+  ],
+  
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+    "icons": {
+    "16": "image.png",
+    "48": "image.png",
+    "128": "image.png"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["styles.css"],
+      "matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"]
+    }
+  ]
+}
